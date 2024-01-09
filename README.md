@@ -29,6 +29,12 @@ To display the help message with the available commands and options, run:
 aptscan --help
 ```
 
+To scan a floor plan, use the `aptscan` console utility. Ex.:
+
+```shell
+aptscan rooms.txt
+```
+
 ## Running tests
 
 1.  Run tests with:
