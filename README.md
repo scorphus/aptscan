@@ -59,9 +59,9 @@ See [LICENSE][] for details.
 [action-link]: https://github.com/scorphus/aptscan/actions?query=workflow%3APython
 [codecov-badge]: https://codecov.io/gh/scorphus/aptscan/branch/main/graph/badge.svg
 [codecov-link]: https://codecov.io/gh/scorphus/aptscan
-[codeclimate-badge]: https://api.codeclimate.com/v1/badges/a0a0a0a0a0a0a0a0a0a0/maintainability
+[codeclimate-badge]: https://api.codeclimate.com/v1/badges/0be26e2fab6a6964945f/maintainability
 [codeclimate-link]: https://codeclimate.com/github/scorphus/aptscan/maintainability
-[codacy-badge]: https://app.codacy.com/project/badge/Grade/a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0
+[codacy-badge]: https://app.codacy.com/project/badge/Grade/7fb3fdf240f344d4b90c3c2ea87877bf
 [codacy-link]: https://app.codacy.com/gh/scorphus/aptscan/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
 [pyenv]: https://github.com/pyenv/pyenv
 [LICENSE]: LICENSE
