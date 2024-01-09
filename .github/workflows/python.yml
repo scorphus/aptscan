@@ -1,0 +1,49 @@
+# This file is part of aptscan
+# https://github.com/scorphus/aptscan
+
+# Licensed under the BSD-3-Clause license:
+# https://opensource.org/licenses/BSD-3-Clause
+# Copyright (c) 2024, Pablo S. Blum de Aguiar <scorphus@gmail.com>
+
+name: Python
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: deps_cache
+        with:
+          path: |
+            ${{ env.pythonLocation}}/lib/*/site-packages/*
+            ${{ env.pythonLocation}}/bin/*
+          key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('setup.py') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-${{ matrix.python-version }}-
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
+      - name: Install package and dependencies
+        run: make setup-ci
+      - name: Run tests
+        run: make test
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        if: matrix.python-version == '3.12'
+      - name: Run linters and check formatting
+        if: matrix.python-version == '3.12'
+        run: make lint

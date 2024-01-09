@@ -1,0 +1,68 @@
+# This file is part of aptscan
+# https://github.com/scorphus/aptscan
+
+# Licensed under the BSD-3-Clause license:
+# https://opensource.org/licenses/BSD-3-Clause
+# Copyright (c) 2024, Pablo S. Blum de Aguiar <scorphus@gmail.com>
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.3.0
+    hooks:
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-vcs-permalinks
+      - id: check-yaml
+        args: ['--unsafe']
+      - id: end-of-file-fixer
+        types: [non-executable, file, text]
+        exclude_types: [markdown]
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        types: [non-executable, file, text]
+        exclude_types: [markdown]
+  - repo: meta
+    hooks:
+      - id: check-useless-excludes
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        language: system
+        entry: isort
+        types: [python]
+        require_serial: true
+      - id: pylint
+        name: pylint
+        files: ^tracytracker/
+        language: system
+        entry: pylint
+        types: [python]
+        require_serial: true
+      - id: pylint-tests
+        name: pylint-tests
+        files: ^tests/
+        language: system
+        entry: pylint --rc-file tests/pylintrc
+        types: [python]
+        require_serial: true
+      - id: black
+        name: black
+        language: system
+        entry: black
+        types: [python]
+        require_serial: true
+      - id: mypy
+        name: mypy
+        language: system
+        entry: mypy
+        types: [python]
+        require_serial: true
+      - id: test
+        name: test
+        language: system
+        entry: make test
+        types: [python]
+        pass_filenames: false
